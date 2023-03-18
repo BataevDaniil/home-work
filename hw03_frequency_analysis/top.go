@@ -6,8 +6,8 @@ import (
 )
 
 func Top10(text string) []string {
-	var words = strings.Fields(text)
-	var counterWords = map[string]int{}
+	words := strings.Fields(text)
+	counterWords := map[string]int{}
 	for _, word := range words {
 		counterWords[word]++
 	}
@@ -15,7 +15,7 @@ func Top10(text string) []string {
 		word  string
 		count int
 	}
-	var counterWordsSlice []counterWordEntries
+	counterWordsSlice := []counterWordEntries{}
 	for word, count := range counterWords {
 		counterWordsSlice = append(counterWordsSlice, counterWordEntries{word: word, count: count})
 	}
@@ -34,7 +34,6 @@ func Top10(text string) []string {
 	for i := 0; i < countTopWords && i < len(counterWords); i++ {
 		result = append(result, counterWordsSlice[i].word)
 	}
-
 	return result
 }
 
