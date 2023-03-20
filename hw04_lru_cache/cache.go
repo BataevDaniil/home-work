@@ -24,20 +24,18 @@ func (c *lruCache) Set(key Key, v interface{}) bool {
 		}
 		c.items[key] = c.queue.Front()
 		return false
-	} else {
-		c.queue.MoveToFront(item)
-		item.Value = v
-		return true
 	}
+	c.queue.MoveToFront(item)
+	item.Value = v
+	return true
 }
 
 func (c *lruCache) Get(key Key) (interface{}, bool) {
 	item := c.items[key]
 	if item == nil {
 		return nil, false
-	} else {
-		return item.Value, true
 	}
+	return item.Value, true
 }
 
 func (c *lruCache) Clear() {

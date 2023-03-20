@@ -33,6 +33,7 @@ func (l *list) Front() *ListItem {
 func (l *list) Back() *ListItem {
 	return l.back
 }
+
 func (l *list) PushFront(item interface{}) *ListItem {
 	listItem := &ListItem{Value: item, Next: l.front}
 	if l.front == nil {
