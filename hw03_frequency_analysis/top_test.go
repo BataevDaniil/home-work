@@ -48,6 +48,17 @@ func TestTop10(t *testing.T) {
 		require.Len(t, Top10(""), 0)
 	})
 
+	t.Run("on word", func(t *testing.T) {
+		require.Len(t, Top10("asdf"), 1)
+	})
+
+	t.Run("strange symbol", func(t *testing.T) {
+		require.Equal(t, []string{"!@±±)V", "jf@!()", "r"}, Top10("jf@!()   r !@±±)V"))
+	})
+	t.Run("space begin and end", func(t *testing.T) {
+		require.Equal(t, []string{"a", "b", "c"}, Top10("   a b c   "))
+	})
+
 	t.Run("positive test", func(t *testing.T) {
 		if taskWithAsteriskIsCompleted {
 			expected := []string{
