@@ -15,6 +15,45 @@ func TestList(t *testing.T) {
 		require.Nil(t, l.Back())
 	})
 
+	t.Run("remove element", func(t *testing.T) {
+		l := NewList()
+		l.PushFront(10)
+		l.PushFront(20)
+
+		first := l.Front()
+		l.Remove(first)
+
+		require.Equal(t, 1, l.Len())
+		require.NotEqual(t, first, l.Front())
+		require.Equal(t, 10, l.Front().Value)
+	})
+
+	t.Run("move element from the end to the beginning", func(t *testing.T) {
+		l := NewList()
+		l.PushFront(10)
+		l.PushFront(20)
+		l.PushFront(30)
+
+		l.MoveToFront(l.Back())
+
+		require.Equal(t, 3, l.Len())
+		require.Equal(t, 10, l.Front().Value)
+		require.Equal(t, 20, l.Back().Value)
+	})
+
+	t.Run("move element from the center to the beginning", func(t *testing.T) {
+		l := NewList()
+		l.PushFront(10)
+		middle := l.PushFront(20)
+		l.PushFront(30)
+
+		l.MoveToFront(middle)
+
+		require.Equal(t, 3, l.Len())
+		require.Equal(t, 20, l.Front().Value)
+		require.Equal(t, 10, l.Back().Value)
+	})
+
 	t.Run("complex", func(t *testing.T) {
 		l := NewList()
 
